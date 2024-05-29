@@ -20,7 +20,17 @@ const port = 3000
 // - el callback recibe 2 parametros:
 // - req: request o la peticion
 // - res: response o la respuesta
-app.get('/api/v1/usuarios', (req, res) => {
+app.get('/api/v1/usuarios', async (req, res) => {
+    await client.connect()
+
+    const db = client.db("sample_mflix")
+    const users = db.collection("users")
+
+    const listaDeUsuarios = await users.find({}).toArray()
+    console.log(listaDeUsuarios)
+
+    
+
     // const respuesta = {
     //     mensaje: "hola"
     // }
@@ -44,6 +54,8 @@ app.get('/api/v1/usuarios/:cedula', (req, res) => {
 
 // post: crear datos
 app.post('/api/v1/usuarios', (req, res) => {
+
+    
 
     res.json({
         mensaje: 'usuario guardado'

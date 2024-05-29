@@ -5,7 +5,7 @@ console.log('Hola mundo con Node JS')
 
 // forma actual con ECMAScript 6 de llamar librerias
 import express from 'express'
-
+import client from './db.js'
 
 const app = express()
 const port = 3000
